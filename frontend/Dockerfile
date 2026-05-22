@@ -2,14 +2,14 @@
 # ─── Stage 1: Dependencies ────────────────────────────────────────────────────
 FROM node:20-alpine AS deps
 WORKDIR /app
-COPY package.json package-lock.json* ./
+COPY frontend/package.json frontend/package-lock.json* ./
 RUN npm ci --legacy-peer-deps
 
 # ─── Stage 2: Builder ─────────────────────────────────────────────────────────
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+COPY frontend/ .
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 

@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
-COPY requirements.txt .
+# Build context is repo root on Railway
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
 
 
@@ -37,7 +38,7 @@ RUN adduser --disabled-password --gecos "" --uid 1001 appuser
 COPY --from=builder /install /usr/local
 
 # Copy application code
-COPY --chown=appuser:appuser . .
+COPY --chown=appuser:appuser backend/ .
 
 USER appuser
 
