@@ -128,7 +128,7 @@ export default function AdminPage() {
                   <div key={table} className="border rounded-lg p-3 space-y-0.5">
                     <p className="text-xs font-mono text-muted-foreground">{table}</p>
                     <p className="text-xl font-bold">
-                      {typeof count === "number" ? formatNumber(count) : count}
+                      {formatNumber(count as number)}
                     </p>
                   </div>
                 ))}
