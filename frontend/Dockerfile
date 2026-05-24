@@ -11,6 +11,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY frontend/ .
 ENV NEXT_TELEMETRY_DISABLED=1
+# Accept NEXT_PUBLIC_* vars at build time so Next.js can inline them
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 RUN npm run build
 
 # ─── Stage 3: Runner ──────────────────────────────────────────────────────────
