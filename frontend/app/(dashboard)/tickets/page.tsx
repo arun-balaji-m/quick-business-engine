@@ -75,7 +75,7 @@ function TicketDetailModal({
                 Generated SQL
               </p>
               <pre className="sql-display text-xs max-h-32 overflow-y-auto">
-                {ticket.query.generated_sql}
+                {ticket.query?.generated_sql}
               </pre>
             </div>
           )}
@@ -94,7 +94,7 @@ function TicketDetailModal({
             {ticket.query?.result_count !== null && (
               <div>
                 <span className="font-medium text-foreground block">Result Rows</span>
-                {ticket.query.result_count}
+                {ticket.query?.result_count}
               </div>
             )}
             {ticket.query?.execution_time_ms !== null && (
